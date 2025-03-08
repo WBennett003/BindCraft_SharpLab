@@ -1,0 +1,56 @@
+{
+    "design_path": "/content/drive/My Drive/BindCraft/PDL1/",
+    "binder_name": "PDL1",
+    "starting_pdb": "/content/bindcraft/example/PDL1.pdb",
+    "chains": "A",
+    "binder_chain" : "B",
+    "target_hotspot_residues": "56",
+    "lengths": [65, 150],
+    "number_of_final_designs": 100,
+    "binder_template" : null,
+    "use_template" : true,
+    "logger" : "",
+    "template_settings" : {
+        "template_path" : "/Templates/",
+        "copies" : 1,
+        "cov" : 75,
+        "id" : 90,
+        "propagate_to_copies" : true,
+        "pair_mode" : "unpaired_paired",
+        "template_mode" : "custom",
+        "do_not_filter" : false,
+        "rm_template_seq" : false,
+        "do_not_align" : false
+    },
+    "design_pipeline" : [
+        { 
+            "job_type" : "Af2Design",
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "structure_generation"
+        },
+        {   "job_type" : "SolubleMPNN", 
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "solubleMPNN"
+        },
+        {
+            "job_type" : "Complex_prediction",
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "solubleMPNN"
+        },
+        {
+            "job_type" : "Filter_designs",
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "solubleMPNN"
+        },
+        {
+            "job_type" : "Rank_designs",
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "solubleMPNN"
+        }
+    ]
+}
