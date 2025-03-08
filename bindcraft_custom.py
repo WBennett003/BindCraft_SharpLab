@@ -240,6 +240,7 @@ class binder_designer:
                             trajectory_interface_scores['interface_hbond_percentage'], trajectory_interface_scores['interface_delta_unsat_hbonds'], trajectory_interface_scores['interface_delta_unsat_hbonds_percentage'],
                             trajectory_alpha_interface, trajectory_beta_interface, trajectory_loops_interface, trajectory_alpha, trajectory_beta, trajectory_loops, trajectory_interface_AA, trajectory_target_rmsd, 
                             trajectory_time_text, traj_seq_notes, self.settings_file, self.filters_file, self.advanced_file]
+        
         insert_data(self.trajectory_csv, trajectory_data)
 
         if self.logger == 'wandb':
@@ -719,7 +720,8 @@ class binder_designer:
                         case "Af2Design":
                             assert ['design_pdb', 'interface_residues'] in design_steps[-1].keys() 
                             design_data['design_pdb'], design_data['design_seq'], design_data['time_text'], design_data['metrics'] = self.generate_trajectory(design_data['design_name'])
-                            
+                            design_data['interface_residues'], design_data['metrics'] = self.score_trajectory(design_data['design_pdb'], design_data['design_seq'], design_data['metrics'], design_data['time_text'])
+                        
                         case "SolubleMPNN":
                             assert ['design_pdb', 'interface_residues'] in design_steps[-1].keys() 
                             design_data['design_seq'] = self.soluble_mpnn_optimisation(design_steps[-1]['design_pdb'], design_steps[-1]['interface_residues'])
@@ -729,7 +731,7 @@ class binder_designer:
                             design_data['metrics'], design_data['interface_residues'], design_data['design_pdb'] = self.predict_complex(design_steps[-1]['design_seq'], design_steps[-1]['design_pdb'], output_csv, out_dir)
                         
                         case "Filter_designs":
-                        
+                            
                             pass
                         
                         case "Rank_designs":

@@ -51,6 +51,12 @@
             "out_folder" : "",
             "score_csv" : "",
             "step_name" : "solubleMPNN"
+        },
+        {
+            "job_type" : "Chai",
+            "out_folder" : "",
+            "score_csv" : "",
+            "step_name" : "solubleMPNN"
         }
     ]
 }
